@@ -38,6 +38,8 @@ int main()
             scanf("%d", &A[i][j]);
         }
     }
+    printf("\n");
+    printf("\n");
     printf("-----------------------------");
     printf("\n");
     printf("Исходная матрица");
@@ -66,16 +68,17 @@ int main()
         {
             for (int i = 0; i < lng; i += 1)
             {
-                printf("%d, ", A[i][j]);
+                printf("%d ", A[i][j]);
             }
         }
         else
         {
             for (int i = (lng-1); i > -1; i = i - 1)
             {
-                printf("%d, ", A[i][j]);
+                printf("%d ", A[i][j]);
             }
         }
     }
-    
+    printf("\n");
+    printf("-----------------------------");
 }
