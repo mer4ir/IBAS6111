@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <locale.h>
+#define size1 10
+#define size2 10
 
 int main()
 {
+    setlocale(LC_ALL, "");
     int lng; int width; int cor = 0;
     do
     {
@@ -25,8 +28,7 @@ int main()
         scanf("%d", &width);
         printf("\n");
     }while (width < 1 or lng < 1 or width > 10 or lng > 10);
-    setlocale(LC_ALL, "");
-    int A[lng][width];
+    int A[size1][size2] = {0};
     printf("-----------------------------");
     for (int i = 0; i < lng; i += 1)
     {
@@ -38,6 +40,8 @@ int main()
             scanf("%d", &A[i][j]);
         }
     }
+    printf("\n");
+    printf("\n");
     printf("-----------------------------");
     printf("\n");
     printf("Исходная матрица");
@@ -66,16 +70,17 @@ int main()
         {
             for (int i = 0; i < lng; i += 1)
             {
-                printf("%d, ", A[i][j]);
+                printf("%d ", A[i][j]);
             }
         }
         else
         {
             for (int i = (lng-1); i > -1; i = i - 1)
             {
-                printf("%d, ", A[i][j]);
+                printf("%d ", A[i][j]);
             }
         }
     }
-    
+    printf("\n");
+    printf("-----------------------------");
 }
