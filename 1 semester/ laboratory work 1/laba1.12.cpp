@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <locale.h>
+#define ssize 10
 
 int main()
 {
+    setlocale(LC_ALL, "");
     //Вводим и проверяем правильность ввода порядка матрицы(ограничения от 1 до 10 не включительно)//
     int size; int cor = 0;
     do
@@ -24,8 +26,7 @@ int main()
         scanf("%d", &size);
         printf("\n");
     }while (size < 1 or size > 10);
-    setlocale(LC_ALL, "");
-    int A[size][size];
+    int A[ssize][ssize] = {0};
     printf("-----------------------------");
     //Вводим элементы матрицы//
     for (int i = 0; i < size; i += 1)
