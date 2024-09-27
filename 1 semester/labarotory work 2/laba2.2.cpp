@@ -31,7 +31,7 @@ void gfv(double a, double b, double h, double e)
     {
         double fsv = fs(x, e); // значение через ряд
         double fev = fe(x); // точное значение
-        printf("%-10.5f %-20.10f %-20.10f \n", x, fsv, fev);
+        printf("%-10.3f %-20.9f %-20.9f \n", x, fsv, fev);
         x += h;
     }
 }
