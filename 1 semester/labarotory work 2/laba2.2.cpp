@@ -6,18 +6,18 @@
 double fs(double x, double e)
 {
     int n = 1;
-    double t = pow(-1, n)*pow(x, 2*n+1)/(2*n*tgamma(2*n+2)); // первый член ряда
+    double t = pow(-1, n)*((pow(x, 2*n+1)*2*n)/(tgamma(2*n+1))); // первый член ряда
     double ss = t;
     while (fabs(t) > e) // продолжаем, пока член ряда больше e
     {
         n += 1;
-        t = pow(-1, n)*pow(x, 2*n+1)/(2*n*tgamma(2*n+2)); // следующий член ряда
+        t = pow(-1, n)*((pow(x, 2*n+1)*2*n)/(tgamma(2*n+1))); // следующий член ряда
         ss += t;
     }
     return ss;
 }
 
-double fe(double x) // Точная функция для проверки
+double fe(double x) // Функция для проверки
 {
     return x*cos(x)-sin(x);
 }
@@ -31,7 +31,7 @@ void gfv(double a, double b, double h, double e)
     {
         double fsv = fs(x, e); // значение через ряд
         double fev = fe(x); // точное значение
-        printf("%-10.3f %-20.9f %-20.9f \n", x, fsv, fev);
+        printf("%-10.3f %-20.7f %-20.7f \n", x, fsv, fev);
         x += h;
     }
 }
