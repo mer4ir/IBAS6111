@@ -5,6 +5,7 @@
 
 int main()
 {
+    int mxsm = 20;
     setlocale(LC_ALL, "");
     int lng; int width; int cor = 0;
     do
@@ -65,7 +66,6 @@ int main()
     for (int i = 0; i < lng; i += 1)
     {
         int sm = 0;
-        int mxsm = 20;
         for (int j = 0; j < width; j += 1)
         {
             sm += A[i][j];
@@ -78,8 +78,9 @@ int main()
         {
             while (k <= (width-1))
             {
+                A[i][k] = 0;
+                printf("%5d ", A[i][k]);
                 k += 1;
-                printf("%5d", l);
             }
             printf("\n");
         }
@@ -87,7 +88,8 @@ int main()
         {
             while (k1 <= (width-1))
             {
-                printf("%5d ", -(A[i][o]));
+                A[i][o] = -(A[i][o]);
+                printf("%5d ", A[i][o]);
                 o += 1;
                 k1 += 1;
             }
