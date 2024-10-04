@@ -5,9 +5,9 @@
 
 int main()
 {
-    int mxsm = 20;
     setlocale(LC_ALL, "");
     int lng; int width; int cor = 0;
+    int mxsm;
     do
     {
         printf("\n");
@@ -28,9 +28,14 @@ int main()
         printf("Введите число столбцов массива: ");
         scanf("%d", &width);
         printf("\n");
-    }while (width < 1 or lng < 1 or width > 10 or lng > 10);
-    int A[size1][size2] = {0};
+    } while (width < 1 or lng < 1 or width > 10 or lng > 10);
+
+
+    int A[size1][size2] = { 0 };
+    int B[size1] = {0};
+
     printf("-----------------------------");
+    
     for (int i = 0; i < lng; i += 1)
     {
         for (int j = 0; j < width; j += 1)
@@ -41,6 +46,7 @@ int main()
             scanf("%d", &A[i][j]);
         }
     }
+
     printf("\n");
     printf("\n");
     printf("-----------------------------");
@@ -49,6 +55,7 @@ int main()
     printf("\n");
     printf("-----------------------------");
     printf("\n");
+
     for (int i = 0; i < lng; i += 1)
     {
         for (int j = 0; j < width; j += 1)
@@ -57,44 +64,59 @@ int main()
         }
         printf("\n");
     }
-    printf("-----------------------------");
+
+    int msm;
+    printf("Введите значение для сравнения: ");
+    scanf("%d", &msm);
     printf("\n");
-    printf("Готовая матрица");
-    printf("\n");
-    printf("-----------------------------");
-    printf("\n");
+    printf("Вектор B - ");
+
     for (int i = 0; i < lng; i += 1)
     {
-        int sm = 0;
         for (int j = 0; j < width; j += 1)
         {
-            sm += A[i][j];
+            B[i] += A[i][j];
         }
-        int k = 0;  
-        int k1 = 0;
-        int l = 0;
-        int o = 0;
-        if (mxsm < sm)
+        
+        printf("%d ", B[i]);
+    }
+    printf("\n");
+
+    for (int i = 0; i < lng; i += 1)
+    {
+       if (B[i] >= msm)
         {
-            while (k <= (width-1))
+            //обнуляем строку i
+            for (int j = 0; j < width; j += 1)
             {
-                A[i][k] = 0;
-                printf("%5d ", A[i][k]);
-                k += 1;
+                A[i][j] = 0;
             }
-            printf("\n");
         }
         else
         {
-            while (k1 <= (width-1))
-            {
-                A[i][o] = -(A[i][o]);
-                printf("%5d ", A[i][o]);
-                o += 1;
-                k1 += 1;
-            }
-            printf("\n");
+           for (int j = 0; j < width; j += 1)
+           {
+               A[i][j] = -(A[i][j]);
+           }
         }
     }
+
+       printf("-----------------------------");
+       printf("\n");
+       printf("Готовая матрица");
+       printf("\n");
+       printf("-----------------------------");
+       printf("\n");
+
+       for (int i = 0; i < lng; i += 1)
+       {
+           for (int j = 0; j < width; j += 1)
+           {
+               printf("%5d", A[i][j]);
+           }
+           printf("\n");
+       }
+
     printf("-----------------------------");
+
 }
