@@ -15,12 +15,15 @@ int main()
             printf("Некоректные значения! \n");
             printf("Введите значение от 1 до 10 \n");
         }
-        printf("Введите размерность матрицы - ");
+        printf("Введите размерность матрицы: ");
         scanf("%d", &razmer);
   } while (razmer < 1 or razmer > 10);
+  
   printf("Введите элементы матрицы: \n");
+  
   int A[a][a] = { 0 };
   int t = 1;
+  
   for (int i = 0; i < razmer; i++) 
   {
     for (int j = 0; j < razmer; j++) 
@@ -37,8 +40,10 @@ int main()
         }
     }
   }
+  
   printf("\n");
   printf("Исходная матрица: \n");
+  
   for (int i = 0; i < razmer; i += 1)
   {
     for (int j = 0; j < razmer; j += 1)
@@ -47,6 +52,7 @@ int main()
     }
     printf("\n");
     }
+
     printf("\n");
     printf("Минимальный элемент: %d \n", min);
     printf("Максимальный элемент:  %d \n", max);
@@ -54,6 +60,7 @@ int main()
     printf("Среднее арифметическое этих чисел будет: ((%d) + (%d))/2 = %d \n", max, min, znach);
     printf("\n");
     printf("Получившаяся матрица \n");
+
     if (znach > 0) 
     {
         for (int i = 0; i < razmer; i++) 
