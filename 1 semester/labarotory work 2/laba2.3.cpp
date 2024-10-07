@@ -3,7 +3,7 @@
 #include <math.h>
 
 
-//функция через ряд
+//функция с точностью
 float znach(float x, float toch)
 {
     int n = 1;
@@ -23,6 +23,10 @@ float znach(float x, float toch)
     return yy;
 }
 
+//функция для проверки
+float rz(float x) {
+    return (1 / (pow(1 + pow(x, 3), (1 / (float)3))));
+}
 
 //вывод значений и функций
 void fun(float nach, float kon, float shag, float toch) {
@@ -30,7 +34,7 @@ void fun(float nach, float kon, float shag, float toch) {
     float x = nach + shag;
     printf("%-10s %-20s %-20s \n", "x", "f(x) ряд", "f(x) полученные значения");
     while (x <= kon) {
-        float raz = (1 / (pow(1 + pow(x, 3), (1 / (float) 3))));
+        float raz = rz(x);
         float zn = znach(x, toch);
         printf("%-10.3f %-20.7f %-20.7f \n", x, zn, raz);
         x += shag;
@@ -42,11 +46,24 @@ int main() {
     setlocale(LC_ALL, "");
     float nach = -1;
     float kon = 1;
-    float shag, toch;
-    printf("Введите шаг для функции: ");
-    scanf_s("%f", &shag);
-    printf("Введите точность для функции: ");
-    scanf_s("%f", &toch);
+    float shag, toch, c = 0, cc = 0;
+    
+    do {
+        c++;
+        if (c > 1) {
+            printf("\nВведите более адекватное значение\n");
+        }
+        printf("\nВведите шаг для функции (0;2) : \n");
+        scanf_s("%f", &shag);
+    } while (shag <= (float) 0 or (int) shag > (float) 2);
+    do {
+        cc++;
+        if (cc > 1) {
+            printf("\nВведите более адекватное значение\n");
+        }
+        printf("\nВведите точность для функции более 0: \n");
+        scanf_s("%f", &toch);
+    } while ((int)toch <= (float) 0);
     fun(nach, kon, shag, toch);
     return 0;
 }
