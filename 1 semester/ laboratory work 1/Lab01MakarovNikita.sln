@@ -1,31 +1,124 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.11.35222.181
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab01MakarovNikita", "Lab01MakarovNikita\Lab01MakarovNikita.vcxproj", "{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Debug|x64.ActiveCfg = Debug|x64
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Debug|x64.Build.0 = Debug|x64
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Debug|x86.ActiveCfg = Debug|Win32
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Debug|x86.Build.0 = Debug|Win32
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Release|x64.ActiveCfg = Release|x64
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Release|x64.Build.0 = Release|x64
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Release|x86.ActiveCfg = Release|Win32
-		{BA115FAE-42C6-4AA2-AC54-47E7A0F82849}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B39FF9F1-4984-4AA4-91AA-A904093EAA92}
-	EndGlobalSection
-EndGlobal
+#include <stdio.h>
+#include <locale.h>
+#define N 10
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	// Матрица A
+	int ONE[N][N];
+	int a, b;
+	do {
+		printf("Введите количество строк(N<=10) матрицы A: ");
+		scanf_s("%d", &a);
+	} while ((a < 1) || (a > 10));
+	do {
+		printf("Введите количество столбцов (N<=10) матрицы A: ");
+		scanf_s("%4d", &b);
+	} while ((b < 0) || (b > 10));
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < b; j++)
+		{
+			printf("Заполните (%d:%d):", i + 1, j + 1);
+			scanf_s("%d", &ONE[i][j]);
+		}
+	}
+	// Вывод матрицы А
+	printf("Матрица A\n");
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < b; j++)
+		{
+			printf("%4d ", ONE[i][j]);
+		}
+		printf("\n");
+	}
+	int TWO[N];
+	// Вектор B
+	int c;
+	for (int i = 0; i < a; i++)
+	{
+		printf("Заполните вектор B:");
+		scanf_s("%d", &TWO[i]);
+	}
+	// Вектор B
+	printf("Вектор B\n");
+	for (int i = 0; i < a; i++)
+	{
+		printf("%4d ", TWO[i]);
+		printf("\n");
+	}
+	int THREE[N];
+	int FOUR[N];
+	int g;
+	int k;
+	const int l = 0;
+	// Вектор C
+	//for (int i = 0; i < a; i++)
+	//{
+	//	k = 0;
+	//	for (int j = 0; j < b; j++)
+	//	{
+	//		k++;
+	//		
+	//		if (ONE[i][j] != TWO[i] and (k == b))
+	//		{
+	//				THREE[i] = l;
+	//		}
+	//		if (ONE[i][j] == TWO[i])
+	//		{
+	//			k = 0;
+	//			THREE[i] = j+1;
+	//			break;
+	//		}
+	//	}
+	//}
+	for (int i = 0; i < a; i++)
+	{
+		THREE[i] = l;
+		for (int j = 0; j < b; j++)
+		{
+			if (ONE[i][j] == TWO[i])
+			{
+				THREE[i] = j + 1;
+				break;
+			}
+		}
+	}
+	
+	// Вектор С
+	printf("Вектор С\n");
+	for (int i = 0; i < a; i++)
+	{
+		printf("%4d ", THREE[i]);
+		printf("\n");
+	}
+	//  Вектор D
+	for (int i = a-1; i >= 0; i--)
+	{
+		k = b-1;
+		for (int j = b-1; j >= 0; j--)
+		{
+			k--;
+
+			if (ONE[i][j] != TWO[i] and (k == 0))
+			{
+				FOUR[i] = l;
+			}
+			if (ONE[i][j] == TWO[i])
+			{
+				k = j;
+				FOUR[i] = j+1;
+				break;
+			}
+		}
+	}
+	// Вектор D
+	printf("Вектор D\n");
+	for (int i = 0; i < a; i++)
+	{
+		printf("%4d ", FOUR[i]);
+		printf("\n");
+	}
+	return 0;
+}
