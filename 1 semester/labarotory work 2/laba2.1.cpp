@@ -1,66 +1,57 @@
 #include <stdio.h>
 #include <math.h>
 
-long long int fac(int n)
+double sigma(double x, double e)
 {
-	long long int c = 1;
-	if (n % 2 == 0)
-	{
-		for (long i = 2; i <= n; i = i+2)
-		{
-			c = c * i;
-		}
-	}
-	else
-	{
-		for (int i = 3; i <= n; i = i+2)
-		{
-			c = c * i;
-		}
-	}
-	return(c);
-}
-
-int acc(double z1, double z2, double e)
-{
-	if (fabs(z1 - z2) > e)
-	{
-		return(1);
-	}
-	else
-	{
-		return(0);
-	}
-}
-
-double sigma(double x,double e)
-{
-	long double c = 0, z1,z2;
-	int n = 1;
-	z2 = pow(-1, n) * (long double(fac(2 * n - 1)) / long double(fac(2 * n))) * (pow(x, 2 * n + 1) / long double(2 * n + 1));
+	double c = 0, z1, z2;
+	double n = 1;
+	z2 =   x * x* x / double( - 6);
 	do {
-		z1 = z2; n++; c = c + z1;
-		z2 = pow(-1, n) * (long double(fac(2 * n - 1)) / long double(fac(2 * n))) * (pow(x, 2 * n + 1) / long double(2 * n + 1));
-	} while (acc(z1, z2, e));
+		z1 = z2; n++; c += z1;
+		z2 = -1 * z1 * ((n * 2 - 1) / (2* n)) * x * x * ((2 * n - 1) / (2 * n + 1));
+	} while (fabs(z2) > e);
 	return(c);
 }
 
 int main()
 {
+loop1:
 	double a, b, h, e;
+start:
 	printf("start[0, 1] ");
 	scanf_s("%lf", &a);
+	if (a > 1 or a < 0) {
+		goto start;
+	};
+end:
 	printf("end[start, 1] ");
 	scanf_s("%lf", &b);
+	if (b > 1 or b < a) {
+		goto end;
+	};
 	printf("step ");
 	scanf_s("%lf", &h);
+accuracy:
 	printf("accuracy ");
 	scanf_s("%lf", &e);
+	if (e <= 0) {
+		goto accuracy;
+	}
 	printf("x        f(x)'     f(x)\n");
-	for (double x = a; x <= b; x = x + h)
+	double x;
+	for (x = a; x < b; x = x + h)
 	{
 		double c = sigma(x, e);
-		printf("%8lf  %8lf  %8lf\n", x, x + c, log(x + sqrt(1 + x*x)));
+		printf("%8lf  %8lf  %8lf\n", x, x + c, log(x + sqrt(1 + x * x)));
 	}
+	double c = sigma(b, e);
+	printf("%8lf  %8lf  %8lf\n", b, b + c, log(b + sqrt(1 + b * b)));
+	int q = 0;
+	printf("if you want to restart input 1. ");
+	scanf_s("%d", &q);
+	if (q == 1) { 
+		printf("\n");
+		goto loop1; 
+	};
 	return(0);
 }
