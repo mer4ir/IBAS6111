@@ -2,7 +2,7 @@
 #include <locale.h>
 #include <math.h>
 
-
+//считает факториал числа
 long double fact(int n) {
     int i = 1;
     int s = 1;
@@ -12,6 +12,7 @@ long double fact(int n) {
     return s;
 }
 
+//считает числитель
 long double chisl(int n) {
     int i = 1;
     int s = 1;
@@ -21,36 +22,35 @@ long double chisl(int n) {
     return s;
 }
 
-//функция с точностью
+//функция основная, с точностью
 long double znach(long double x, long double toch)
 {
     int n = 1;
-    float y = (pow(( - 1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
+    float y = (pow((-1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
     float yy = y;
     while (fabs(y) > toch)
     {
         n += 1;
-        y = (pow(( - 1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
+        y = (pow((-1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
         yy += y;
     }
     yy = 1 - yy;
     return yy;
 }
 
-//функция для проверки
+//функция проверки
 long double rz(long double x) {
     return (1 / (pow(1 + pow(x, 3), (1 / (float)3))));
 }
 
 //вывод значений и функций
 void fun(long double nach, long double kon, long double shag, long double toch) {
-    setlocale(LC_ALL, "");
     long double x = nach + shag;
-    printf("%-10s %-20s %-20s \n", "x", "f(x) ряд", "f(x) полученные значения");
+    printf("%-5s %-20s %-20s \n", "x", "f(x) ряд", "f(x) полученные значения");
     while (x <= kon) {
         float raz = rz(x);
         float zn = znach(x, toch);
-        printf("%-10.3lf %-20.7lf %-20.7lf \n", x, zn, raz);
+        printf("%-10lf %-20.7lf %-20.7lf \n", x, zn, raz);
         x += shag;
     }
 }
