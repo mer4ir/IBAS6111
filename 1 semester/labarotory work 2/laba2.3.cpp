@@ -2,35 +2,15 @@
 #include <locale.h>
 #include <math.h>
 
-//считает факториал числа
-long double fact(int n) {
-    int i = 1;
-    int s = 1;
-    for (i; i < n; i++) {
-        s *= i;
-    }
-    return s;
-}
-
-//считает числитель
-long double chisl(int n) {
-    int i = 1;
-    int s = 1;
-    for (i; i < n; i++) {
-        s *= 3 * n - 2;
-    }
-    return s;
-}
-
 //функция основная, с точностью
 long double znach(long double x, long double toch) {
     int n = 1;
-    float y = (pow((-1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
+    float y = pow(x, 3) / (float)3;
     float yy = y;
     while (fabs(y) > toch)
     {
         n += 1;
-        y = (pow((-1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
+        y *= (3 * n - 2) * pow(x, 3) / (n * 3);
         yy += y;
     }
     yy = 1 - yy;
