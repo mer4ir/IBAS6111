@@ -59,8 +59,15 @@ void do_sottis(int a, char* vivod) {
 
 
 void do_mil(int a, char* vivod) {
+
+    const char* sot[] = { "", "сто ", "двести ", "триста ",
+                               "четыреста ", "пятьсот ", "шестьсот ",
+                               "семьсот ", "восемьсот ", "девятьсот " };
     if (a > 99999 and a < 1000000) {
-        do_tis(a/1000 - ((a/1000) % 100), vivod);
+        do_tis(a / 1000 - ((a / 1000) % 100), vivod);
+        if (a / 1000 > 99 and a / 1000 < 110) {
+            strcat(vivod, "тысяч ");
+        }
         do_sottis(a % 100000, vivod);
     }
 }
@@ -107,6 +114,9 @@ void do_sotmln(int a, char* vivod) {
 void do_milrd(int a, char* vivod) {
     if (a > 99999999 and a < 1000000000) {
         do_tis(a / 1000000 - ((a / 1000000) % 100), vivod);
+        if (a / 1000000 > 99 and a / 1000000 < 110) {
+            strcat(vivod, "миллионов ");
+        }
         do_sotmln(a % 100000000, vivod);
     }
 }
@@ -119,7 +129,7 @@ void nado(int a, char* vivod) {
         do_sot(a, vivod);
     }
     else if (a > 99 and a < 1000) {
-        do_tis(a, vivod);  
+        do_tis(a, vivod);
     }
     else if (a > 999 and a < 100000) {
         do_sottis(a, vivod);
