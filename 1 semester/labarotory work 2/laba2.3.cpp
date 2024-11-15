@@ -23,8 +23,7 @@ long double chisl(int n) {
 }
 
 //функция основная, с точностью
-long double znach(long double x, long double toch)
-{
+long double znach(long double x, long double toch) {
     int n = 1;
     float y = (pow((-1), n + 1) * (chisl(n) / (pow(3, n) * fact(n))) * pow(x, (3 * n)));
     float yy = y;
@@ -40,13 +39,13 @@ long double znach(long double x, long double toch)
 
 //функция проверки
 long double rz(long double x) {
-    return (1 / (pow(1 + pow(x, 3), (1 / (float)3))));
+    return (1 / (pow((1 + pow(x, 3)), (1 / (float)3))));
 }
 
 //вывод значений и функций
 void fun(long double nach, long double kon, long double shag, long double toch) {
     long double x = nach + shag;
-    printf("%-5s %-20s %-20s \n", "x", "f(x) ряд", "f(x) полученные значения");
+    printf("\n%-10s %-20s %-20s \n", "x", "f(x) обычный", "f(x) проверка");
     while (x <= kon) {
         float raz = rz(x);
         float zn = znach(x, toch);
