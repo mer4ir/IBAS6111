@@ -5,12 +5,12 @@
 //функция основная, с точностью
 long double znach(long double x, long double toch) {
     int n = 1;
-    float y = x*x*x / (float)3;
-    float yy = y;
+    long double y = (x * x * x) / (long double)3;
+    long double yy = y;
     while (fabs(y) > toch)
     {
         n += 1;
-        y *= (3 * n - 2) * x*x*x / (n * 3);
+        y *= (-1)*((3 * n - 2) * x * x * x) / (n * 3);
         yy += y;
     }
     yy = 1 - yy;
@@ -18,8 +18,8 @@ long double znach(long double x, long double toch) {
 }
 
 //функция проверки
-long double rz(long double x) {
-    return (1 / (pow((1 + pow(x, 3)), (1 / (float)3))));
+long double prov(long double x) {
+    return (1 / (pow((1 + pow(x, 3)), (1 / (long double)3))));
 }
 
 //вывод значений и функций
@@ -27,9 +27,9 @@ void fun(long double nach, long double kon, long double shag, long double toch) 
     long double x = nach + shag;
     printf("\n%-10s %-20s %-20s \n", "x", "f(x) обычный", "f(x) проверка");
     while (x <= kon) {
-        float raz = rz(x);
-        float zn = znach(x, toch);
-        printf("%-10lf %-20.7lf %-20.7lf \n", x, zn, raz);
+        long double proverka = prov(x);
+        long double zn = znach(x, toch);
+        printf("%-10lf %-20.7lf %-20.7lf \n", x, zn, proverka);
         x += shag;
     }
 }
@@ -73,7 +73,7 @@ int main() {
             scanf("%lf", &toch);
         } while (toch <= (long double)0);
         fun(nach, kon, shag, toch);
-        printf("Хотите продолжать? (1/0)\n");
+        printf("Хотите продолжить? (1 - да, 0 - нет)\n");
         scanf("%d", &cont);
         if (cont != 1) {
             break;
