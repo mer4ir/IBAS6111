@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <locale.h>
+#include <string.h>
+#include <windows.h>
+#define SIZE 255
+
+char* Concat(const char* strl, const char* str2) {
+	char* result;
+	int k = strlen(strl) + strlen(str2) + 1;
+	result = (char*)malloc(k * sizeof(char));
+	*result = '\0';
+	strcat(result, strl);
+	strcat(result, str2);
+	return result;
+}
+
+int main() {
+	char strl[SIZE], str2[SIZE];
+	setlocale(LC_ALL, "");
+	SetConsoleCP(1251);
+	printf("Введите строчку 1: ");
+	fgets(strl, 255, stdin);
+	strl [strlen(strl) - 1] = 0;
+	printf("Введите строчку 2: ");
+	fgets(str2, 255, stdin);
+	str2[strlen(str2) - 1] = 0;
+	printf("Строка 1: \"%s\"\n", strl);
+	printf("Строка 2: \"%s\"\n", str2);
+	char* result = Concat(strl, str2);
+	printf("Строка 3: \"%s\"\n", result);
+}
