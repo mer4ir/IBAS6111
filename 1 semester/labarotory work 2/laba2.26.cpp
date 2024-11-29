@@ -71,6 +71,20 @@ void timeset(int cor) {
     } while (time <= 0);
 }
 
+void step(double *p, double *vp, double sp) {
+    while (*p<0 or *p>sp) {
+        if (*p >= sp) {
+            *vp = *vp * -1;
+            *p = sp - (*p - sp);
+        }
+
+        if (*p <= 0) {
+            *vp = *vp * -1;
+            *p = 0 + (0 - *p);
+        }
+    }
+}
+
 int main() {
     space(cor);
     startpos(cor);
@@ -84,40 +98,10 @@ int main() {
         y += vy;
         z += vz;
 
-        while (x<0 or x>ln) {
-            if (x >= ln) {
-                vx = vx * -1;
-                x = ln - (x - ln);
-            }
+        step(&x, &vx, ln);
+        step(&y, &vy, wd);
+        step(&z, &vz, dp);
 
-            if (x <= 0) {
-                vx = vx * -1;
-                x = 0 + (0 - x);
-            }
-        }
-
-        while (y<0 or y>wd) {
-            if (y >= wd) {
-                vy = vy * -1;
-                y = wd - (y - wd);
-            }
-            if (y <= 0) {
-                vy = vy * -1;
-                y = 0 + (0 - y);
-            }
-        }
-
-        while (z<0 or z>dp) {
-            if (z >= dp) {
-                vz = vz * -1;
-                z = dp - (z - dp);
-            }
-
-            if (z <= 0) {
-                vz = vz * -1;
-                z = 0 + (0 - z);
-            }
-        }
     } while (currtime <= time);
 
     return(0);
